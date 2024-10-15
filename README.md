@@ -18,7 +18,7 @@ AQI Guardian is an interactive platform designed to provide real-time air qualit
 4. **AQI vs Respiratory Diseases Analysis**: Investigate the correlation between AQI and respiratory disease rates in India.
 5. **Face Mask Suggestion Tool**: Personalized mask recommendations based on local AQI levels.
 6. **Adaptive AQI Themes**: Dynamic user interface theme that adapts to changes in real-time AQI data.
-7. **Pollution Awareness Game**: An engaging game to increase user awareness about air pollution, its causes, and how to mitigate its effects.
+7. **Pollution awareness game**: we will be adding a pollution awareness game
 ## Tech Stack
 
 - **Frontend**: React
