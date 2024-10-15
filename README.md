@@ -22,8 +22,8 @@ AQI Guardian is an interactive platform designed to provide real-time air qualit
 ## Tech Stack
 
 - **Frontend**: React
-- **Backend**: python
-- **Database**: mongoDB
+- **Backend**:python
+- **Database**:mongoDB
 - **API**:
 - **Visualization**:
 - **Deployment**:
