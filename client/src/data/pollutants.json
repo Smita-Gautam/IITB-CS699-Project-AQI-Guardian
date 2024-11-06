@@ -1,0 +1,38 @@
+[
+    {
+        "name": "PM2.5",
+        "maxValue": 150,
+        "currentValue": 61,
+        "imagePath": "/assets/images/pm2.5.png"
+    },
+    {
+        "name": "PM10",
+        "maxValue": 200,
+        "currentValue": 158,
+        "imagePath": "/assets/images/pm10.png"
+    },
+    {
+        "name": "CO",
+        "maxValue": 300,
+        "currentValue": 234,
+        "imagePath": "/assets/images/co.png"
+    },
+    {
+        "name": "SO2",
+        "maxValue": 20,
+        "currentValue": 4,
+        "imagePath": "/assets/images/so2.png"
+    },
+    {
+        "name": "Ozone",
+        "maxValue": 100,
+        "currentValue": 6,
+        "imagePath": "/assets/images/ozone.png"
+    },
+    {
+        "name": "NO2",
+        "maxValue": 40,
+        "currentValue": 14,
+        "imagePath": "/assets/images/no2.png"
+    }
+]
