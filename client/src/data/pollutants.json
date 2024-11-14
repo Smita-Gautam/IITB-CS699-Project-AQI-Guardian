@@ -3,36 +3,42 @@
         "name": "PM2.5",
         "maxValue": 150,
         "currentValue": 61,
-        "imagePath": "/assets/images/pm2.5.png"
+        "imagePath": "/assets/images/pm2.5.png",
+        "description": "Fine particulate matter that can penetrate deep into the lungs and affect respiratory health."
     },
     {
         "name": "PM10",
         "maxValue": 200,
         "currentValue": 158,
-        "imagePath": "/assets/images/pm10.png"
+        "imagePath": "/assets/images/pm10.png",
+        "description": "Inhalable particles that can cause breathing issues and aggravate asthma."
     },
     {
         "name": "CO",
         "maxValue": 300,
-        "currentValue": 234,
-        "imagePath": "/assets/images/co.png"
+        "currentValue": 155,
+        "imagePath": "/assets/images/co.png",
+        "description": "A colorless, odorless gas that reduces oxygen delivery in the body and can be harmful in high concentrations."
     },
     {
         "name": "SO2",
         "maxValue": 20,
         "currentValue": 4,
-        "imagePath": "/assets/images/so2.png"
+        "imagePath": "/assets/images/so2.png",
+        "description": "A pungent gas from burning fossil fuels, which can cause throat irritation and exacerbate lung diseases."
     },
     {
         "name": "Ozone",
         "maxValue": 100,
         "currentValue": 6,
-        "imagePath": "/assets/images/ozone.png"
+        "imagePath": "/assets/images/ozone.png",
+        "description": "A reactive gas at ground level that can irritate the lungs and reduce lung function."
     },
     {
         "name": "NO2",
         "maxValue": 40,
         "currentValue": 14,
-        "imagePath": "/assets/images/no2.png"
+        "imagePath": "/assets/images/no2.png",
+        "description": "A gas from vehicles and industry that can irritate airways and worsen respiratory diseases."
     }
 ]

@@ -5,29 +5,22 @@ import MetroAQIPanel from "../components/MetroAQIPanel";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="flex w-full p-4 bg-gradient-to-r from-blue-100 to-blue-150">
-      {/* Main Content Area */}
-      {/* <div className="flex-1 grid gap-4 p-4 border border-blue-500 bg-blue-50"> */}
-      <div className="flex-1 grid gap-4 p-4 border">
-        {/* Top Section with CityAQI and CurrentDayPlot */}
+    <div className="flex w-full p-4 bg-gray-100">
+      <div className="flex-1 w-3/4 grid gap-4">
         <div className="grid gap-4">
-          <div className="p-4 border">
+          <div className="pt-4">
             <CurrentCityAQI />
           </div>
-          {/* <div className="p-4 border border-green-500 bg-green-50"> */}
-          <div className="p-4 border">
+          <div className="">
             <CurrentCityPollutants />
           </div>
-          {/* <div className="p-4 border border-yellow-500 bg-yellow-50"> */}
-          <div className="p-4 border">
+          <div className="">
             <CurrentDayPlot />
           </div>
         </div>
       </div>
 
-      {/* Right Side Panel for MetroAQI */}
-      {/* <div className="w-1/4 ml-4 p-4 border border-red-500 bg-red-50"> */}
-      <div className="w-1/4 ml-4 p-4 border">
+      <div className="w-1/4 pt-4 pb-4 pl-4">
         <MetroAQIPanel />
       </div>
     </div>
