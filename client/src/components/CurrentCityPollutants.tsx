@@ -16,12 +16,17 @@ const CurrentCityPollutants: React.FC = () => {
     setPollutants(pollutantsData);
   }, []);
 
+  const getDescription = (pollutant: any) => {
+    return `${pollutant.name}: ${pollutant.currentValue} / ${pollutant.maxValue} - ${pollutant.description}`;
+  };
+
   return (
     <div className="p-6 bg-white rounded-lg shadow-md text-center">
-      <h2 className="text-xl font-semibold text-blue-600 mb-4">
-        Current Air Quality in Mumbai
-      </h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="text-gray-800">
+        <p className="text-3xl font-bold">Air Pollutant Levels</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
         {pollutants.map((pollutant, index) => (
           <PollutantBar
             key={index}
@@ -29,6 +34,7 @@ const CurrentCityPollutants: React.FC = () => {
             maxValue={pollutant.maxValue}
             currentValue={pollutant.currentValue}
             imagePath={pollutant.imagePath}
+            description={getDescription(pollutant)}
           />
         ))}
       </div>

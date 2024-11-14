@@ -6,7 +6,6 @@ const MainLayout = () => {
     <>
       <Navbar />
       <div className="pt-16">
-        {/* Hardcoded padding equal to navbar's height */}
         <Outlet />
       </div>
     </>
