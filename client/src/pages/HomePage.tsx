@@ -11,9 +11,7 @@ const HomePage: React.FC = () => {
           <div className="pt-4">
             <CurrentCityAQI />
           </div>
-          <div className="">
-            <CurrentCityPollutants />
-          </div>
+          <div className="">{/* <CurrentCityPollutants /> */}</div>
           <div className="">
             <CurrentDayPlot />
           </div>
