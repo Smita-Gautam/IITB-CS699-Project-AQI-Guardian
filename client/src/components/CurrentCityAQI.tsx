@@ -1,40 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CurrentCityPollutants from "./CurrentCityPollutants";
 import { fetchAQI, AQIResponse } from "../api/aqi";
+import { CityContext } from "../context/CityProvider";
 
-const CurrentCityAQI = () => {
+const CurrentCityAQI: React.FC = () => {
+  const { selectedCity } = useContext(CityContext);
   const [aqiData, setAqiData] = useState<AQIResponse | null>(null);
-  const [locationError, setLocationError] = useState<string | null>(null);
-  const [lat, setLat] = useState<number | null>(null);
-  const [lon, setLon] = useState<number | null>(null);
-
-  useEffect(() => {
-    const getCurrentLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setLat(position.coords.latitude);
-            setLon(position.coords.longitude);
-            setLocationError(null);
-          },
-          (err) => {
-            setLocationError("Unable to retrieve your location.");
-            console.error("Geolocation Error:", err);
-          }
-        );
-      } else {
-        setLocationError("Geolocation is not supported by your browser.");
-      }
-    };
-
-    getCurrentLocation();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (lat !== null && lon !== null) {
+      if (selectedCity) {
         try {
-          const data = await fetchAQI(lat, lon);
+          const data = await fetchAQI(
+            parseFloat(selectedCity.lat),
+            parseFloat(selectedCity.lon)
+          );
           setAqiData(data);
         } catch (error) {
           console.error("Error fetching AQI data:", error);
@@ -44,10 +24,10 @@ const CurrentCityAQI = () => {
     };
 
     fetchData();
-  }, [lat, lon]);
+  }, [selectedCity]);
 
-  if (locationError) {
-    return <div>Error: {locationError}</div>;
+  if (!selectedCity) {
+    return <div>Loading location...</div>;
   }
 
   if (!aqiData) {
@@ -60,12 +40,13 @@ const CurrentCityAQI = () => {
         <div
           className="card-body overview-pane flex flex-col justify-center items-center text-gray-900 h-80 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/assets/images/AQIBanner.png')`,
+            backgroundImage:
+              "linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/assets/images/AQIBanner.png')",
             backgroundSize: "contain",
           }}
         >
           <h4 className="font-bold text-3xl">
-            Air Quality Index (AQI) for {aqiData.location || "Unknown Location"}
+            Air Quality Index (AQI) for {aqiData.location}
           </h4>
           <h1 className="text-6xl font-bold">{aqiData.aqi || "N/A"}</h1>
         </div>

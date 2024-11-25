@@ -1,3 +1,4 @@
+import { CityProvider } from "./context/CityProvider";
 import "./App.css";
 import {
   Route,
@@ -21,7 +22,11 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <CityProvider>
+      <RouterProvider router={router} />
+    </CityProvider>
+  );
 };
 
 export default App;
