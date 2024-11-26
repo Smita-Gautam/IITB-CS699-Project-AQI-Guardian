@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { FaSearch, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { CityContext } from "../context/CityProvider";
+import { CityAQIContext } from "../context/CityAQIProvider";
 import cityData from "../data/cities.json";
 
 const Navbar: React.FC = () => {
-  const { setSelectedCity } = useContext(CityContext);
+  const { setSelectedCity } = useContext(CityAQIContext);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredCities, setFilteredCities] = useState<typeof cityData>([]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
         <Link to="/" className="text-gray-700">
           City AQI
         </Link>
-        <Link to="/visualizations" className="text-gray-700">
+        <Link to="/visualisations" className="text-gray-700">
           AQI Visualizations
         </Link>
       </div>

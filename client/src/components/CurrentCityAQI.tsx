@@ -1,37 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import CurrentCityPollutants from "./CurrentCityPollutants";
-import { fetchAQI, AQIResponse } from "../api/aqi";
-import { CityContext } from "../context/CityProvider";
+import { CityAQIContext } from "../context/CityAQIProvider";
 
 const CurrentCityAQI: React.FC = () => {
-  const { selectedCity } = useContext(CityContext);
-  const [aqiData, setAqiData] = useState<AQIResponse | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (selectedCity) {
-        try {
-          const data = await fetchAQI(
-            parseFloat(selectedCity.lat),
-            parseFloat(selectedCity.lon)
-          );
-          setAqiData(data);
-        } catch (error) {
-          console.error("Error fetching AQI data:", error);
-          setAqiData(null);
-        }
-      }
-    };
-
-    fetchData();
-  }, [selectedCity]);
+  const { selectedCity, aqiData, loading, error } = useContext(CityAQIContext);
 
   if (!selectedCity) {
     return <div>Loading location...</div>;
   }
 
-  if (!aqiData) {
+  if (loading) {
     return <div>Loading AQI data...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching AQI data: {error}</div>;
+  }
+
+  if (!aqiData) {
+    return <div>No AQI data available</div>;
   }
 
   return (
@@ -46,7 +33,7 @@ const CurrentCityAQI: React.FC = () => {
           }}
         >
           <h4 className="font-bold text-3xl">
-            Air Quality Index (AQI) for {aqiData.location}
+            Air Quality Index for {aqiData.location}
           </h4>
           <h1 className="text-6xl font-bold">{aqiData.aqi || "N/A"}</h1>
         </div>

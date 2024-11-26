@@ -110,7 +110,7 @@ const CurrentCityPollutants: React.FC<CurrentCityPollutantsProps> = ({
                   : Number(pollutant.currentValue)
               } // Default to 0 if invalid
               imagePath={pollutant.imagePath}
-              description={`${pollutant.name}: ${pollutant.currentValue} / ${pollutant.maxValue} - ${pollutant.description}`}
+              // description={`${pollutant.name}: ${pollutant.currentValue} / ${pollutant.maxValue} - ${pollutant.description}`}
             />
           ))}
         </div>

@@ -8,11 +8,12 @@ interface CityAQICardProps {
 
 const getAQIColor = (aqi: number) => {
   if (aqi > 300) return "bg-red-600 text-white"; // Hazardous
-  if (aqi > 200) return "bg-red-500 text-white"; // Very Unhealthy
-  if (aqi > 150) return "bg-orange-500 text-white"; // Unhealthy
-  if (aqi > 100) return "bg-yellow-500 text-black"; // Unhealthy for Sensitive Groups
-  if (aqi > 50) return "bg-green-500 text-black"; // Moderate
+  // if (aqi > 200) return "bg-red-500 text-white"; // Very Unhealthy
+  if (aqi > 150) return "bg-yellow-500 text-white"; // Unhealthy
+  // if (aqi > 100) return "bg-yellow-500 text-black"; // Unhealthy for Sensitive Groups
+  // if (aqi > 50) return "bg-green-500 text-black"; // Moderate
   return "bg-blue-500 text-white"; // Good
+  // return "bg-green-500 text-white"; // Good
 };
 
 const CityAQICard: React.FC<CityAQICardProps> = ({

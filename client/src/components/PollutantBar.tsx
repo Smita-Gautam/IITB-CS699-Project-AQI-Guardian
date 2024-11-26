@@ -1,12 +1,12 @@
 import React from "react";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+// import { Tooltip as ReactTooltip } from "react-tooltip";
 
 interface PollutantBarProps {
   name: string;
   maxValue: number;
   currentValue: number;
   imagePath: string;
-  description: string;
+  // description: string;
 }
 
 const PollutantBar: React.FC<PollutantBarProps> = ({
@@ -14,7 +14,7 @@ const PollutantBar: React.FC<PollutantBarProps> = ({
   maxValue,
   currentValue,
   imagePath,
-  description,
+  // description,
 }) => {
   const percentage = (currentValue / maxValue) * 100;
   const barColor =
@@ -29,8 +29,8 @@ const PollutantBar: React.FC<PollutantBarProps> = ({
       <img src={imagePath} alt={`${name} icon`} className="h-12 mb-2" />
       <span
         className="text-lg font-semibold"
-        data-tooltip-id={`tooltip-${name}`}
-        data-tooltip-content={description}
+        // data-tooltip-id={`tooltip-${name}`}
+        // data-tooltip-content={description}
       >
         <span className="text-xl font-bold">{currentValue}</span>{" "}
         <span className="text-sm font-medium text-gray-500">({name})</span>
@@ -43,7 +43,7 @@ const PollutantBar: React.FC<PollutantBarProps> = ({
         ></div>
       </div>
 
-      <ReactTooltip id={`tooltip-${name}`} place="top" />
+      {/* <ReactTooltip id={`tooltip-${name}`} place="top" /> */}
     </div>
   );
 };
