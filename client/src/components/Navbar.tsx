@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { FaSearch, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import allCityData from "../data/aqiData.json";
+import { CityAQIContext } from "../context/CityAQIProvider";
+import cityData from "../data/cities.json";
 
 const Navbar: React.FC = () => {
-  const [selectedCity, setSelectedCity] = useState<string>("Mumbai");
+  const { setSelectedCity } = useContext(CityAQIContext);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredCities, setFilteredCities] = useState<string[]>([]);
-
-  const cities = allCityData.map((city) => city.name);
+  const [filteredCities, setFilteredCities] = useState<typeof cityData>([]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const Navbar: React.FC = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -31,8 +29,8 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     if (searchQuery.length > 0) {
       setFilteredCities(
-        cities.filter((city) =>
-          city.toLowerCase().includes(searchQuery.toLowerCase())
+        cityData.filter((city) =>
+          city.city_name.toLowerCase().includes(searchQuery.toLowerCase())
         )
       );
     } else {
@@ -40,14 +38,14 @@ const Navbar: React.FC = () => {
     }
   }, [searchQuery]);
 
-  const handleCitySelect = (cityName: string) => {
-    setSelectedCity(cityName);
-    setSearchQuery(cityName);
+  const handleCitySelect = (city: (typeof cityData)[0]) => {
+    setSelectedCity({
+      city_name: city.city_name,
+      lat: city.lat,
+      lon: city.lon,
+    });
+    setSearchQuery(city.city_name);
     setFilteredCities([]);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
   };
 
   return (
@@ -55,10 +53,10 @@ const Navbar: React.FC = () => {
       <h1 className="text-xl font-bold">AQI Guardian</h1>
 
       <div className="flex justify-center space-x-8 flex-grow">
-        <Link to={`/`} className="text-gray-700">
+        <Link to="/" className="text-gray-700">
           City AQI
         </Link>
-        <Link to="/visualizations" className="text-gray-700">
+        <Link to="/visualisations" className="text-gray-700">
           AQI Visualizations
         </Link>
       </div>
@@ -68,7 +66,7 @@ const Navbar: React.FC = () => {
         <input
           type="text"
           value={searchQuery}
-          onChange={handleInputChange}
+          onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for a city"
           className="border border-gray-300 rounded p-2 pl-8 pr-10 w-full"
         />
@@ -81,16 +79,13 @@ const Navbar: React.FC = () => {
           >
             {filteredCities.map((city) => (
               <div
-                key={city}
+                key={city.city_id}
                 onClick={() => handleCitySelect(city)}
                 className="p-2 hover:bg-blue-100 cursor-pointer"
               >
-                {city}
+                {city.city_name}
               </div>
             ))}
-            {filteredCities.length === 0 && (
-              <div className="p-2 text-gray-500">No results found</div>
-            )}
           </div>
         )}
       </div>
