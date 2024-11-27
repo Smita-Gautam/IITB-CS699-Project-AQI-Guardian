@@ -1,38 +1,35 @@
 import React from "react";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 
 interface PollutantBarProps {
   name: string;
   maxValue: number;
+  safeValue: number;
+  avgValue: number;
   currentValue: number;
   imagePath: string;
-  description: string;
 }
 
 const PollutantBar: React.FC<PollutantBarProps> = ({
   name,
   maxValue,
+  safeValue,
+  avgValue,
   currentValue,
   imagePath,
-  description,
 }) => {
-  const percentage = (currentValue / maxValue) * 100;
+  const percentage = Math.min((currentValue / maxValue) * 100, 100);
   const barColor =
-    percentage > 75
+    currentValue > avgValue
       ? "bg-red-500"
-      : percentage > 50
+      : currentValue > safeValue
       ? "bg-yellow-400"
       : "bg-green-400";
 
   return (
     <div className="flex flex-col items-center text-center p-4">
       <img src={imagePath} alt={`${name} icon`} className="h-12 mb-2" />
-      <span
-        className="text-lg font-semibold"
-        data-tooltip-id={`tooltip-${name}`}
-        data-tooltip-content={description}
-      >
-        <span className="text-xl font-bold">{currentValue}</span>{" "}
+      <span className="text-lg font-semibold">
+        <span className="text-2xl font-bold">{currentValue}</span>{" "}
         <span className="text-sm font-medium text-gray-500">({name})</span>
       </span>
 
@@ -42,8 +39,6 @@ const PollutantBar: React.FC<PollutantBarProps> = ({
           style={{ width: `${percentage}%` }}
         ></div>
       </div>
-
-      <ReactTooltip id={`tooltip-${name}`} place="top" />
     </div>
   );
 };

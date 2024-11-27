@@ -1,0 +1,26 @@
+[
+    {
+        "heading": "What is PM2.5?",
+        "content": "Particulate matter 2.5 (PM2.5) refers to tiny particles in the air that are 2.5 microns or smaller. PM2.5 can penetrate into the lungs and bloodstream and cause irritation of the airways and aggravation of heart and lung diseases. Annual average concentrations of PM2.5 should not exceed 5 µg/m³, while 24-hour average exposures should not exceed 15 µg/m³."
+    },
+    {
+        "heading": "What is PM10?",
+        "content": "Particulate matter 10 (PM10) consists of larger particles in the air that are 10 microns or smaller. PM10 can cause respiratory issues, eye irritation, and reduced visibility. Prolonged exposure can worsen asthma and other respiratory diseases."
+    },
+    {
+        "heading": "What is Ozone?",
+        "content": "Ozone (O₃) is a gas composed of three oxygen atoms. While beneficial in the upper atmosphere for blocking UV radiation, ground-level ozone is a harmful pollutant that can cause breathing problems, trigger asthma, and reduce lung function."
+    },
+    {
+        "heading": "What is Carbon Monoxide (CO)?",
+        "content": "Carbon monoxide (CO) is a colorless, odorless gas produced by the incomplete combustion of carbon-containing fuels. High levels of CO can reduce oxygen delivery to the body’s organs and tissues, leading to symptoms such as fatigue, chest pain, impaired vision, and confusion. Prolonged exposure to high levels can be fatal."
+    },
+    {
+        "heading": "What is Sulfur Dioxide (SO₂)?",
+        "content": "Sulfur dioxide (SO₂) is a colorless gas with a pungent odor, primarily produced by the burning of fossil fuels and industrial processes like metal refining. Short-term exposure to high levels of SO₂ can cause throat and lung irritation, while long-term exposure may lead to respiratory diseases like asthma and bronchitis."
+    },
+    {
+        "heading": "What is Nitrogen Dioxide (NO₂)?",
+        "content": "Nitrogen dioxide (NO₂) is a reddish-brown gas formed when fuel is burned at high temperatures, such as in vehicles or power plants. NO₂ irritates the airways and can lead to respiratory problems, particularly in children and those with asthma. Long-term exposure can also worsen lung function and increase the risk of respiratory infections."
+    }
+]

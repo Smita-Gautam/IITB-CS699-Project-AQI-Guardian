@@ -1,3 +1,4 @@
+import { CityAQIProvider } from "./context/CityAQIProvider";
 import "./App.css";
 import {
   Route,
@@ -14,8 +15,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
-      {/* <Route path="/jobs" element={<JobsPage />} />
-      <Route path="/jobs/:id" element={<JobPage />} loader={jobLoader} /> */}
       <Route path="/visualizations" element={<VisualizationPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
@@ -23,7 +22,11 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <CityAQIProvider>
+      <RouterProvider router={router} />
+    </CityAQIProvider>
+  );
 };
 
 export default App;
