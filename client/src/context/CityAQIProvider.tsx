@@ -27,6 +27,10 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedCity, setSelectedCity] = useState<CityData | null>(null);
+  const [previousCoordinates, setPreviousCoordinates] = useState<{
+    lat: string;
+    lon: string;
+  } | null>(null);
   const [aqiData, setAqiData] = useState<AQIResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,6 +65,13 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     const fetchData = async () => {
       if (!selectedCity) return;
+      if (
+        previousCoordinates &&
+        previousCoordinates.lat === selectedCity.lat &&
+        previousCoordinates.lon === selectedCity.lon
+      ) {
+        return;
+      }
 
       setLoading(true);
       setError(null);
@@ -72,6 +83,23 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
           parseFloat(selectedCity.lon)
         );
         setAqiData(data);
+
+        setPreviousCoordinates({
+          lat: selectedCity.lat,
+          lon: selectedCity.lon,
+        });
+
+        if (
+          data.location &&
+          data.location.split(",")[0] !== selectedCity.city_name
+        ) {
+          let loc = data.location.split(",")[0];
+          setSelectedCity((prev) =>
+            prev
+              ? { ...prev, city_name: loc }
+              : { city_name: loc, lat: "", lon: "" }
+          );
+        }
       } catch (err) {
         setError("Failed to fetch AQI data.");
         console.error(err);
@@ -79,9 +107,8 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
         setLoading(false);
       }
     };
-
     fetchData();
-  }, [selectedCity]);
+  }, [selectedCity, previousCoordinates]);
 
   return (
     <CityAQIContext.Provider
