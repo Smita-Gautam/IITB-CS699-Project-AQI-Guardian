@@ -9,13 +9,13 @@ import {
 import MainLayout from "./layouts/MainLayout";
 import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage";
-import VisualisationPage from "./pages/VisualisationPage";
+import VisualizationPage from "./pages/VisualizationPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
-      <Route path="/visualisations" element={<VisualisationPage />} />
+      <Route path="/visualizations" element={<VisualizationPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
