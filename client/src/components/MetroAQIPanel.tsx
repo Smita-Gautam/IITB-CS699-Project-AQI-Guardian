@@ -12,8 +12,8 @@ const MetroAQIPanel: React.FC = () => {
     }));
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
+    <div className="p-4 bg-white rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold mb-2 text-center text-gray-800">
         Metro Cities AQI
       </h1>
       <div className="space-y-4">

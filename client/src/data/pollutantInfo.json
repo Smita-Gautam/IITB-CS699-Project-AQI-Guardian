@@ -1,0 +1,14 @@
+[
+    {
+        "heading": "What is PM2.5?",
+        "content": "Particulate matter 2.5 (PM2.5) refers to tiny particles in the air that are 2.5 microns or smaller. PM2.5 can penetrate into the lungs and bloodstream and cause irritation of the airways and aggravation of heart and lung diseases. Annual average concentrations of PM2.5 should not exceed 5 µg/m³, while 24-hour average exposures should not exceed 15 µg/m³."
+    },
+    {
+        "heading": "What is PM10?",
+        "content": "Particulate matter 10 (PM10) consists of larger particles in the air that are 10 microns or smaller. PM10 can cause respiratory issues, eye irritation, and reduced visibility. Prolonged exposure can worsen asthma and other respiratory diseases."
+    },
+    {
+        "heading": "What is Ozone?",
+        "content": "Ozone (O₃) is a gas composed of three oxygen atoms. While beneficial in the upper atmosphere for blocking UV radiation, ground-level ozone is a harmful pollutant that can cause breathing problems, trigger asthma, and reduce lung function."
+    }
+]

@@ -31,6 +31,9 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
   // Use `navigator.geolocation` to set the default location on app start
   useEffect(() => {
     const getDefaultLocation = () => {
@@ -63,6 +66,7 @@ export const CityAQIProvider: React.FC<{ children: ReactNode }> = ({
       setError(null);
 
       try {
+        await delay(1000);
         const data = await fetchAQI(
           parseFloat(selectedCity.lat),
           parseFloat(selectedCity.lon)

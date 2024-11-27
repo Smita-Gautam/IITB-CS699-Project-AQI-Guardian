@@ -1,25 +1,26 @@
 import React, { useContext } from "react";
 import CurrentCityPollutants from "./CurrentCityPollutants";
 import { CityAQIContext } from "../context/CityAQIProvider";
+import LoadingAnimation from "./LoadingAnimation/LoadingAnimation";
 
 const CurrentCityAQI: React.FC = () => {
   const { selectedCity, aqiData, loading, error } = useContext(CityAQIContext);
 
-  if (!selectedCity) {
-    return <div>Loading location...</div>;
+  if (!selectedCity || loading || error || !aqiData) {
+    return <LoadingAnimation />;
   }
 
-  if (loading) {
-    return <div>Loading AQI data...</div>;
-  }
+  // if (loading) {
+  //   return <LoadingAnimation />;
+  // }
 
-  if (error) {
-    return <div>Error fetching AQI data: {error}</div>;
-  }
+  // if (error) {
+  //   return <LoadingAnimation />;
+  // }
 
-  if (!aqiData) {
-    return <div>No AQI data available</div>;
-  }
+  // if (!aqiData) {
+  //   return <LoadingAnimation />;
+  // }
 
   return (
     <div>
