@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { FaSearch, FaMapMarkerAlt } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { CityAQIContext } from "../context/CityAQIProvider";
 import cityData from "../data/cities.json";
 
@@ -9,6 +9,8 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredCities, setFilteredCities] = useState<typeof cityData>([]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
+  const isVisualisationsPage = location.pathname === "/visualisations";
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -74,35 +76,36 @@ const Navbar: React.FC = () => {
           AQI Visualizations
         </NavLink>
       </div>
+      {!isVisualisationsPage && (
+        <div className="flex items-center relative w-full max-w-xs ml-auto">
+          <FaSearch className="absolute left-3 text-gray-500" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for a city"
+            className="border border-gray-300 rounded-lg p-2 pl-10 pr-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+          />
+          <FaMapMarkerAlt className="absolute right-3 text-gray-500" />
 
-      <div className="flex items-center relative w-full max-w-xs ml-auto">
-        <FaSearch className="absolute left-3 text-gray-500" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search for a city"
-          className="border border-gray-300 rounded-lg p-2 pl-10 pr-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
-        />
-        <FaMapMarkerAlt className="absolute right-3 text-gray-500" />
-
-        {searchQuery.length > 0 && filteredCities.length > 0 && (
-          <div
-            ref={dropdownRef}
-            className="absolute top-full mt-1 bg-white border border-gray-300 rounded shadow-lg w-full max-h-40 overflow-y-auto z-10"
-          >
-            {filteredCities.map((city) => (
-              <div
-                key={city.city_id}
-                onClick={() => handleCitySelect(city)}
-                className="p-2 hover:bg-blue-100 cursor-pointer transition-all duration-300"
-              >
-                {city.city_name}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+          {searchQuery.length > 0 && filteredCities.length > 0 && (
+            <div
+              ref={dropdownRef}
+              className="absolute top-full mt-1 bg-white border border-gray-300 rounded shadow-lg w-full max-h-40 overflow-y-auto z-10"
+            >
+              {filteredCities.map((city) => (
+                <div
+                  key={city.city_id}
+                  onClick={() => handleCitySelect(city)}
+                  className="p-2 hover:bg-blue-100 cursor-pointer transition-all duration-300"
+                >
+                  {city.city_name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 };

@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { debounce } from "lodash";
-import { CityAQIContext } from "../context/CityAQIProvider"; // Import your context
+import { CityAQIContext } from "../context/CityAQIProvider";
 import { fetchHourlyAQI } from "../api/hourly_aqi";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import cities from "../data/cities.json";
 
-// Define the city object type
 interface City {
   city_id: string;
   city_name: string;
@@ -32,7 +31,7 @@ const CurrentDayPlot: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Ensure the current city is always selected
+  // to ensure the current city is always selected
   useEffect(() => {
     if (selectedCity) {
       setSelectedCities((prev) => new Set(prev).add(selectedCity.city_name));
@@ -52,7 +51,7 @@ const CurrentDayPlot: React.FC = () => {
     }
   };
 
-  // Fetch AQI data for new cities added to the selection
+  // fetch AQI data for new cities added to the selection
   useEffect(() => {
     const fetchSelectedCitiesData = async () => {
       for (let city of selectedCities) {
@@ -75,7 +74,7 @@ const CurrentDayPlot: React.FC = () => {
   const handleCheckboxChange = (cityName: string) => {
     setSelectedCities((prev) => {
       const updatedSelection = new Set(prev);
-      if (cityName === selectedCity?.city_name) return updatedSelection; // Prevent deselection of current city
+      if (cityName === selectedCity?.city_name) return updatedSelection; // prevent deselection of current city
       if (updatedSelection.has(cityName)) {
         updatedSelection.delete(cityName);
       } else {
